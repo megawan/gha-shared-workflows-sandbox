@@ -15,3 +15,5 @@ Throwaway repository used to exercise the reusable workflows of
 | `automation-stale.yml` | `automation-stale` (dry run) | dispatch |
 | `automation-sync-labels.yml` | `automation-sync-labels` | push (labels.yml), dispatch |
 | `automation-actionlint.yml` | `automation-actionlint` | pull_request, push, dispatch |
+
+<!-- docs -->
