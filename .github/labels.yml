@@ -1,0 +1,12 @@
+- name: terraform
+  color: "7b42bc"
+  description: Terraform changes
+- name: workflows
+  color: "2088ff"
+  description: GitHub Actions workflow changes
+- name: docs
+  color: "0075ca"
+  description: Documentation
+- name: terraform-drift
+  color: "d93f0b"
+  description: Terraform drift detected

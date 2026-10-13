@@ -1,0 +1,42 @@
+name: Terraform
+on:
+  push:
+    branches: [main]
+    paths: [terraform/**]
+  pull_request:
+    paths: [terraform/**]
+  workflow_dispatch:
+permissions: {}
+jobs:
+  validate:
+    permissions:
+      contents: read
+    uses: megawan/gha-shared-workflows/.github/workflows/terraform-validate.yml@v1
+    with:
+      working-directory: terraform
+  security:
+    permissions:
+      contents: read
+      security-events: write
+    uses: megawan/gha-shared-workflows/.github/workflows/terraform-security.yml@v1
+    with:
+      working-directory: terraform
+  plan:
+    if: github.event_name == 'pull_request'
+    needs: [validate, security]
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    uses: megawan/gha-shared-workflows/.github/workflows/terraform-plan.yml@v1
+    with:
+      working-directory: terraform
+  apply:
+    if: github.event_name != 'pull_request'
+    needs: [validate, security]
+    permissions:
+      contents: read
+      id-token: write
+    uses: megawan/gha-shared-workflows/.github/workflows/terraform-apply.yml@v1
+    with:
+      working-directory: terraform

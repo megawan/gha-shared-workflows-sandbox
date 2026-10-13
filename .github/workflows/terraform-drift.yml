@@ -1,0 +1,13 @@
+name: Terraform Drift
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  drift:
+    permissions:
+      contents: read
+      id-token: write
+      issues: write
+    uses: megawan/gha-shared-workflows/.github/workflows/terraform-drift.yml@v1
+    with:
+      working-directory: terraform

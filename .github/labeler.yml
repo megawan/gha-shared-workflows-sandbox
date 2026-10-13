@@ -1,0 +1,9 @@
+terraform:
+  - changed-files:
+      - any-glob-to-any-file: terraform/**
+workflows:
+  - changed-files:
+      - any-glob-to-any-file: .github/workflows/**
+docs:
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.md"]

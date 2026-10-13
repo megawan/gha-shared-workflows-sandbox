@@ -1,0 +1,36 @@
+name: Security
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  codeql-interpreted:
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: megawan/gha-shared-workflows/.github/workflows/security-codeql.yml@v1
+    with:
+      languages: '["javascript-typescript", "python"]'
+  codeql-go:
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    uses: megawan/gha-shared-workflows/.github/workflows/security-codeql.yml@v1
+    with:
+      languages: '["go"]'
+      build-mode: autobuild
+  secret-scan:
+    permissions:
+      contents: read
+      security-events: write
+    uses: megawan/gha-shared-workflows/.github/workflows/security-secret-scan.yml@v1
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: megawan/gha-shared-workflows/.github/workflows/security-dependency-review.yml@v1

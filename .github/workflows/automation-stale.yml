@@ -1,0 +1,12 @@
+name: Stale
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  stale:
+    permissions:
+      issues: write
+      pull-requests: write
+    uses: megawan/gha-shared-workflows/.github/workflows/automation-stale.yml@v1
+    with:
+      dry-run: true
