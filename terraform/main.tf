@@ -9,3 +9,4 @@ resource "terraform_data" "example" {
 output "example" {
   value = terraform_data.example.output
 }
+# change
